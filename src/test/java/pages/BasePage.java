@@ -9,10 +9,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class BasePage {
 
@@ -21,10 +22,15 @@ public class BasePage {
     WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
   
     static {
-        ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.addArguments("--remote-allow-origins=*");
-        driver = new ChromeDriver(chromeOptions);
-        
+       /* System.setProperty("webdriver.chrome.driver", "C:\\Users\\casa\\Desktop\\chromedriver\\chrome-win64\\chrome.exe");
+        ChromeOptions options=new ChromeOptions();
+        options.setBinary("C:\\Users\\casa\\Desktop\\chromedriver\\chrome-win64\\chrome.exe");
+       // options.setBinary("C:\\Users\\casa\\Desktop\\chromedriver\\chrome-win64\\chrome.exe");
+        options.addArguments("--remote-allow-origins=*");
+        driver = new ChromeDriver(options);*/
+        DesiredCapabilities capabilities = DesiredCapabilities.firefox();
+        capabilities.setCapability("marionette", true);
+        System.setProperty("webdriver.gecko.driver", "drivers/geckodriver.exe");
     }
 
     public BasePage(WebDriver driver){
